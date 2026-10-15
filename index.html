@@ -18,9 +18,7 @@
   --blue: #65aaff;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -30,13 +28,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-button, a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
-  font: inherit;
-}
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
 
 .page {
   display: none;
@@ -46,9 +39,7 @@ button {
   justify-content: center;
 }
 
-.page.active {
-  display: flex;
-}
+.page.active { display: flex; }
 
 .container {
   width: 100%;
@@ -68,9 +59,7 @@ button {
   font-weight: 900;
 }
 
-.brand h1 span {
-  color: var(--gold);
-}
+.brand h1 span { color: var(--gold); }
 
 .brand p {
   color: var(--muted);
@@ -87,10 +76,7 @@ button {
   box-shadow: 0 15px 45px #0008;
 }
 
-.panel h2 {
-  margin: 0 0 8px;
-  font-size: 19px;
-}
+.panel h2 { margin: 0 0 8px; font-size: 19px; }
 
 .description {
   color: var(--muted);
@@ -122,10 +108,7 @@ button {
   font-weight: bold;
 }
 
-.task-content {
-  min-width: 0;
-  flex: 1;
-}
+.task-content { min-width: 0; flex: 1; }
 
 .task-content strong {
   font-size: 13px;
@@ -145,17 +128,9 @@ button {
   white-space: nowrap;
 }
 
-.task.done {
-  border-color: #385b42;
-}
-
-.task.done .status {
-  color: #80d99b;
-}
-
-.task.locked {
-  opacity: .45;
-}
+.task.done { border-color: #385b42; }
+.task.done .status { color: #80d99b; }
+.task.locked { opacity: .45; }
 
 .btn {
   display: block;
@@ -186,15 +161,7 @@ button {
   cursor: not-allowed;
 }
 
-.btn.link {
-  background: #0b0b0b;
-  color: var(--blue);
-  border-color: #252525;
-}
-
-.progress-wrap {
-  margin-top: 19px;
-}
+.progress-wrap { margin-top: 19px; }
 
 .progress-label {
   display: flex;
@@ -236,9 +203,7 @@ button {
   letter-spacing: 1px;
 }
 
-.info-page {
-  text-align: center;
-}
+.info-page { text-align: center; }
 
 .info-page h1 {
   font-size: 25px;
@@ -267,9 +232,7 @@ button {
   color: var(--muted);
 }
 
-.timer strong {
-  color: var(--gold);
-}
+.timer strong { color: var(--gold); }
 
 input {
   display: block;
@@ -284,9 +247,7 @@ input {
   font-size: 13px;
 }
 
-input:focus {
-  border-color: var(--gold);
-}
+input:focus { border-color: var(--gold); }
 
 .key-display {
   display: none;
@@ -314,22 +275,16 @@ input:focus {
   line-height: 1.7;
 }
 
-.expiration strong {
-  color: var(--gold);
-}
-
-.hidden {
-  display: none !important;
-}
+.expiration strong { color: var(--gold); }
+.hidden { display: none !important; }
 </style>
 </head>
 
 <body>
 
-<!-- MAIN TASK PAGE -->
+<!-- TAREAS -->
 <section id="mainPage" class="page active">
   <div class="container">
-
     <header class="brand">
       <h1>GLODON <span>HUB</span></h1>
       <p>KEY SYSTEM · ACCESS VERIFICATION</p>
@@ -350,9 +305,7 @@ input:focus {
         <span id="videoBadge" class="status">PENDIENTE</span>
       </div>
 
-      <button id="videoButton" class="btn" type="button">
-        ABRIR VIDEO
-      </button>
+      <button id="videoButton" class="btn" type="button">ABRIR VIDEO</button>
 
       <div id="task2" class="task locked">
         <div class="task-number">02</div>
@@ -405,7 +358,7 @@ input:focus {
   </div>
 </section>
 
-<!-- INFORMATION PAGE -->
+<!-- TASK 3: INFORMACIÓN -->
 <section id="infoPage" class="page">
   <div class="container">
     <header class="brand">
@@ -415,22 +368,20 @@ input:focus {
 
     <main class="panel info-page">
       <h1>¡Hola! Bienvenido a Glodon Hub</h1>
-
       <p>
         ¿Estás perdid@? Ve a mi YouTube y lee las instrucciones para conocer
         cómo utilizar Glodon Hub.
       </p>
 
+      <!-- ENLACE CORRECTO DEL TASK 3 -->
       <a
         href="https://youtube.com/shorts/9S5jkNaBL1I?si=6HN8ckN-EKfj14Dr"
         target="_blank"
         rel="noopener noreferrer"
-      >
-        Ver el video de instrucciones
-      </a>
+      >Ver el video de instrucciones</a>
 
       <div class="timer">
-        <span id="infoTimerText">Espera </span>
+        <span>Tiempo restante: </span>
         <strong id="infoCountdown">20 segundos</strong>
       </div>
 
@@ -439,7 +390,7 @@ input:focus {
       </button>
 
       <p id="infoMessage" class="message" aria-live="polite">
-        Mantén esta página abierta hasta que termine el contador.
+        Espera hasta que termine el contador.
       </p>
     </main>
 
@@ -447,7 +398,7 @@ input:focus {
   </div>
 </section>
 
-<!-- KEY GENERATOR PAGE -->
+<!-- GENERADOR DE CLAVES -->
 <section id="keyPage" class="page">
   <div class="container">
     <header class="brand">
@@ -458,8 +409,7 @@ input:focus {
     <main class="panel">
       <h2>Generador de claves</h2>
       <p class="description">
-        Genera tu clave de acceso. La duración depende de la expiración
-        indicada por el servidor.
+        Genera tu clave de acceso y consulta cuánto tiempo le queda.
       </p>
 
       <button id="generateButton" class="btn primary" type="button">
@@ -468,10 +418,7 @@ input:focus {
 
       <div id="keyBox" class="key-display">
         <div id="keyText"></div>
-
-        <button id="copyButton" class="btn" type="button">
-          COPIAR KEY
-        </button>
+        <button id="copyButton" class="btn" type="button">COPIAR KEY</button>
 
         <div class="expiration">
           <div>Tiempo restante de la clave</div>
@@ -502,21 +449,22 @@ const API_BASE = "https://glodon-key-system.onrender.com";
 const VIDEO_URL =
   "https://youtube.com/shorts/2B3r12H67_Y?si=i0cSfdBKIt0Vmzg7";
 
-const DISCORD_URL =
-  "https://discord.gg/jEQGF6zWS";
+const DISCORD_URL = "https://discord.gg/jEQGF6zWS";
 
 /* ESTADO */
 let videoStarted = false;
 let videoStartTime = 0;
 let discordOpened = false;
+let discordWaiting = false;
 let infoFinished = false;
 let currentKey = "";
 let expiresAt = null;
 let infoInterval = null;
 let expiryInterval = null;
 let videoTimer = null;
+let discordTimer = null;
 
-/* HELPERS */
+/* UTILIDADES */
 const $ = id => document.getElementById(id);
 
 function setPage(pageId) {
@@ -540,42 +488,45 @@ function updateTasks() {
   const videoDone = videoStarted && elapsed >= 20000;
 
   $("task1").classList.toggle("done", videoDone);
-  $("videoBadge").textContent = videoDone ? "COMPLETADO" :
-    videoStarted ? "EN PROGRESO" : "PENDIENTE";
+  $("videoBadge").textContent = videoDone
+    ? "COMPLETADO"
+    : videoStarted ? "EN PROGRESO" : "PENDIENTE";
 
   $("videoStatus").textContent = videoDone
-    ? "Video verificado por tiempo."
+    ? "Espera completada."
     : videoStarted
-      ? "Espera hasta completar los 20 segundos."
+      ? "Video iniciado. Espera 20 segundos."
       : "Abre el video y espera 20 segundos.";
 
-  $("discordButton").disabled = !videoDone || discordOpened;
+  $("discordButton").disabled =
+    !videoDone || discordOpened || discordWaiting;
 
   $("task2").classList.toggle("locked", !videoDone);
   $("task2").classList.toggle("done", discordOpened);
 
   $("discordBadge").textContent = discordOpened
     ? "COMPLETADO"
-    : videoDone
-      ? "DISPONIBLE"
-      : "BLOQUEADO";
+    : discordWaiting
+      ? "ESPERANDO"
+      : videoDone ? "DISPONIBLE" : "BLOQUEADO";
 
   $("discordStatus").textContent = discordOpened
-    ? "Terminaste la espera de Discord."
-    : videoDone
-      ? "Abre la invitación y espera 5 segundos."
-      : "Se desbloquea después del video.";
+    ? "Espera completada."
+    : discordWaiting
+      ? "Espera el contador de 10 segundos."
+      : videoDone
+        ? "Abre Discord y espera 10 segundos."
+        : "Se desbloquea después del video.";
 
-  $("infoButton").disabled = !discordOpened || infoFinished;
+  $("infoButton").disabled =
+    !discordOpened || infoFinished;
 
   $("task3").classList.toggle("locked", !discordOpened);
   $("task3").classList.toggle("done", infoFinished);
 
   $("infoBadge").textContent = infoFinished
     ? "COMPLETADO"
-    : discordOpened
-      ? "DISPONIBLE"
-      : "BLOQUEADO";
+    : discordOpened ? "DISPONIBLE" : "BLOQUEADO";
 
   $("infoStatus").textContent = infoFinished
     ? "Información completada."
@@ -590,16 +541,46 @@ function updateTasks() {
 
   $("progressFill").style.width = progress + "%";
   $("progressText").textContent = progress + "%";
-
   $("continueArea").classList.toggle("hidden", !infoFinished);
 }
 
-function startVideoTimer() {
+/* TASK 1: VIDEO Y ESPERA DE 20 SEGUNDOS */
+$("videoButton").addEventListener("click", () => {
+  const elapsed = videoStarted
+    ? Date.now() - videoStartTime
+    : 0;
+
+  if (videoStarted && elapsed >= 20000) {
+    window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
+    updateTasks();
+    return;
+  }
+
+  if (videoStarted) {
+    window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
+    setMessage(
+      "Espera " + Math.ceil((20000 - elapsed) / 1000) +
+      " segundos para desbloquear Discord."
+    );
+    return;
+  }
+
+  const tab = window.open(VIDEO_URL, "_blank");
+
+  if (!tab) {
+    setMessage("Permite las ventanas emergentes e inténtalo otra vez.");
+    return;
+  }
+
+  videoStarted = true;
+  videoStartTime = Date.now();
+  $("videoButton").textContent = "ABRIR VIDEO OTRA VEZ";
+
+  setMessage("Video abierto. Espera 20 segundos para continuar.");
+  updateTasks();
+
   clearInterval(videoTimer);
-
   videoTimer = setInterval(() => {
-    if (!videoStarted) return;
-
     const remaining = Math.max(
       0,
       20000 - (Date.now() - videoStartTime)
@@ -607,103 +588,72 @@ function startVideoTimer() {
 
     if (remaining > 0) {
       $("videoStatus").textContent =
-        "Espera " + Math.ceil(remaining / 1000) +
-        " segundos para continuar.";
+        "Espera " + Math.ceil(remaining / 1000) + " segundos.";
     } else {
       clearInterval(videoTimer);
       updateTasks();
-      setMessage("Primera tarea completada. Ya puedes abrir Discord.");
+      setMessage("Task 1 completado. Ya puedes abrir Discord.");
     }
   }, 250);
-}
-
-/* TAREA 1 */
-$("videoButton").addEventListener("click", () => {
-  if (videoStarted) {
-    const remaining = Math.max(
-      0,
-      20000 - (Date.now() - videoStartTime)
-    );
-
-    if (remaining > 0) {
-      setMessage(
-        "Espera " + Math.ceil(remaining / 1000) +
-        " segundos para completar la primera tarea."
-      );
-      window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
-      return;
-    }
-
-    updateTasks();
-    window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
-    return;
-  }
-
-  const tab = window.open(VIDEO_URL, "_blank");
-
-  if (!tab) {
-    setMessage(
-      "El navegador bloqueó la ventana. Permite ventanas emergentes e inténtalo otra vez."
-    );
-    return;
-  }
-
-  videoStarted = true;
-  videoStartTime = Date.now();
-
-  $("videoButton").textContent = "ABRIR VIDEO OTRA VEZ";
-  setMessage("Video abierto. Espera 20 segundos para desbloquear Discord.");
-
-  startVideoTimer();
-  updateTasks();
 });
 
-/* TAREA 2 */
+/* TASK 2: DISCORD Y ESPERA OBLIGATORIA DE 10 SEGUNDOS */
 $("discordButton").addEventListener("click", () => {
-  if (!videoStarted ||
-      Date.now() - videoStartTime < 20000 ||
-      discordOpened) {
-    return;
-  }
+  const videoDone =
+    videoStarted && Date.now() - videoStartTime >= 20000;
+
+  if (!videoDone || discordOpened || discordWaiting) return;
 
   const tab = window.open(DISCORD_URL, "_blank");
 
   if (!tab) {
-    setMessage(
-      "Permite abrir ventanas emergentes e inténtalo otra vez."
-    );
+    setMessage("Permite las ventanas emergentes e inténtalo otra vez.");
     return;
   }
 
-  $("discordButton").disabled = true;
-  $("discordButton").textContent = "ESPERA 5 SEGUNDOS...";
-  $("discordStatus").textContent = "Esperando 5 segundos...";
-  setMessage(
-    "Invitación abierta. Espera 5 segundos para continuar."
-  );
+  discordWaiting = true;
+  discordOpened = false;
 
-  setTimeout(() => {
+  $("discordButton").disabled = true;
+  $("discordButton").textContent = "ESPERA 10 SEGUNDOS...";
+  $("infoButton").disabled = true;
+
+  updateTasks();
+  setMessage("Discord abierto. Espera los 10 segundos completos.");
+
+  let remaining = 10;
+
+  clearInterval(discordTimer);
+  discordTimer = setInterval(() => {
+    remaining--;
+
+    if (remaining > 0) {
+      $("discordButton").textContent =
+        "ESPERA " + remaining + " SEGUNDOS...";
+      $("discordStatus").textContent =
+        "Espera " + remaining + " segundos.";
+      return;
+    }
+
+    clearInterval(discordTimer);
+
+    discordWaiting = false;
     discordOpened = true;
 
     $("discordButton").textContent = "DISCORD COMPLETADO";
-    $("discordButton").disabled = true;
 
     updateTasks();
-
-    setMessage(
-      "Task 2 completada. Ya puedes abrir la información."
-    );
-  }, 5000);
+    setMessage("Espera completada. Ahora puedes abrir el Task 3.");
+  }, 1000);
 });
 
-/* TAREA 3: PÁGINA INFORMATIVA */
+/* TASK 3: PÁGINA DE INFORMACIÓN CON ESPERA DE 20 SEGUNDOS */
 $("infoButton").addEventListener("click", () => {
   if (!discordOpened || infoFinished) return;
 
   setPage("info");
 
   let remaining = 20;
-
   $("returnButton").disabled = true;
   $("returnButton").textContent = "ESPERA 20 SEGUNDOS...";
   $("infoCountdown").textContent = remaining + " segundos";
@@ -732,7 +682,6 @@ $("infoButton").addEventListener("click", () => {
     $("returnButton").textContent = "VOLVER Y CONTINUAR";
     $("infoMessage").textContent =
       "Tiempo completado. Ya puedes regresar.";
-
   }, 1000);
 });
 
@@ -741,10 +690,7 @@ $("returnButton").addEventListener("click", () => {
 
   setPage("main");
   updateTasks();
-
-  setMessage(
-    "Todas las tareas están completadas. Presiona CONTINUAR."
-  );
+  setMessage("Todas las tareas están completadas. Presiona CONTINUAR.");
 });
 
 /* CONTINUAR AL GENERADOR */
@@ -753,12 +699,11 @@ $("continueButton").addEventListener("click", () => {
   setPage("keyPage");
 });
 
-/* VOLVER A TAREAS */
 $("backButton").addEventListener("click", () => {
   setPage("main");
 });
 
-/* GENERAR KEY DESDE RENDER */
+/* GENERAR KEY CON LA API DE RENDER */
 $("generateButton").addEventListener("click", async () => {
   const button = $("generateButton");
 
@@ -774,9 +719,7 @@ $("generateButton").addEventListener("click", async () => {
   try {
     const response = await fetch(API_BASE + "/api/keys/create", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({})
     });
 
@@ -797,7 +740,7 @@ $("generateButton").addEventListener("click", async () => {
     const payload = data.data || data;
 
     if (!payload.key) {
-      throw new Error("La respuesta del servidor no contiene una clave.");
+      throw new Error("La respuesta no contiene una clave.");
     }
 
     currentKey = String(payload.key);
@@ -811,18 +754,15 @@ $("generateButton").addEventListener("click", async () => {
         expiresAt = parsedExpiry;
         startExpiryCountdown();
       } else {
-        $("expiryCountdown").textContent =
-          "Expiración no disponible";
+        $("expiryCountdown").textContent = "Expiración no disponible";
         $("expiryDate").textContent = "";
       }
     } else {
-      $("expiryCountdown").textContent =
-        "Expiración no disponible";
+      $("expiryCountdown").textContent = "Expiración no disponible";
       $("expiryDate").textContent = "";
     }
 
-    $("keyMessage").textContent =
-      "Clave generada correctamente.";
+    $("keyMessage").textContent = "Clave generada correctamente.";
 
   } catch (error) {
     $("keyMessage").textContent =
@@ -835,7 +775,7 @@ $("generateButton").addEventListener("click", async () => {
   }
 });
 
-/* CONTADOR DINÁMICO DE EXPIRACIÓN */
+/* CONTADOR DE EXPIRACIÓN */
 function startExpiryCountdown() {
   clearInterval(expiryInterval);
 
@@ -852,10 +792,10 @@ function startExpiryCountdown() {
       return;
     }
 
-    const totalSeconds = Math.floor(remaining / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
+    const secondsTotal = Math.floor(remaining / 1000);
+    const hours = Math.floor(secondsTotal / 3600);
+    const minutes = Math.floor((secondsTotal % 3600) / 60);
+    const seconds = secondsTotal % 60;
 
     $("expiryCountdown").textContent =
       String(hours).padStart(2, "0") + ":" +
@@ -870,7 +810,7 @@ function startExpiryCountdown() {
   expiryInterval = setInterval(updateExpiry, 1000);
 }
 
-/* COPIAR KEY AL PORTAPAPELES */
+/* COPIAR KEY REALMENTE */
 $("copyButton").addEventListener("click", async () => {
   if (!currentKey) return;
 
@@ -883,7 +823,6 @@ $("copyButton").addEventListener("click", async () => {
         typeof navigator.clipboard.writeText === "function") {
       await navigator.clipboard.writeText(currentKey);
     } else {
-      /* Alternativa para navegadores sin Clipboard API */
       const textarea = document.createElement("textarea");
       textarea.value = currentKey;
       textarea.setAttribute("readonly", "");
@@ -899,19 +838,18 @@ $("copyButton").addEventListener("click", async () => {
       textarea.remove();
 
       if (!copied) {
-        throw new Error("El navegador no permitió copiar la clave.");
+        throw new Error("El navegador no permitió copiar.");
       }
     }
 
     button.textContent = "¡KEY COPIADA!";
-    $("keyMessage").textContent =
-      "La clave se copió al portapapeles.";
+    $("keyMessage").textContent = "La clave se copió al portapapeles.";
 
     setTimeout(() => {
       button.textContent = "COPIAR KEY";
     }, 2000);
 
-  } catch (error) {
+  } catch {
     $("keyMessage").textContent =
       "No se pudo copiar automáticamente. Abre la web en Chrome con HTTPS e inténtalo otra vez.";
 
@@ -923,6 +861,5 @@ $("copyButton").addEventListener("click", async () => {
 /* ESTADO INICIAL */
 updateTasks();
 </script>
-
 </body>
-        </html>
+  </html>
