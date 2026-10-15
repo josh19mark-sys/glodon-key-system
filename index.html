@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080808">
 <title>Glodon Hub | Key System</title>
 
@@ -14,108 +14,169 @@
 }
 
 body {
-  min-height: 100vh;
   background: #080808;
-  color: #f5f5f5;
+  color: #f2f2f2;
   font-family: Arial, sans-serif;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
+  align-items: center;
+  padding: 18px;
 }
 
 .panel {
   width: 100%;
-  max-width: 390px;
+  max-width: 410px;
   background: #101010;
   border: 1px solid #393020;
-  border-radius: 18px;
-  padding: 26px 22px;
-  box-shadow: 0 0 35px #000;
+  border-radius: 17px;
+  padding: 24px 20px;
+  box-shadow: 0 15px 50px #000;
 }
 
 .logo {
   text-align: center;
+  color: #d8ad54;
   font-size: 27px;
   font-weight: 900;
-  color: #d8ad54;
   letter-spacing: 2px;
 }
 
 .subtitle {
   text-align: center;
-  color: #858585;
-  font-size: 12px;
-  margin-top: 7px;
+  color: #777;
+  font-size: 11px;
+  margin-top: 8px;
 }
 
 .line {
   height: 1px;
-  background: #393020;
-  margin: 22px 0;
+  background: #30291d;
+  margin: 21px 0;
 }
 
 .status {
   text-align: center;
-  font-size: 12px;
   color: #aaa;
-  margin-bottom: 20px;
+  font-size: 12px;
+  margin-bottom: 17px;
 }
 
-.step {
-  background: #171717;
+.progress {
+  height: 4px;
+  background: #292929;
+  border-radius: 5px;
+  margin: 15px 0 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #d8ad54;
+  transition: width .3s;
+}
+
+.task {
+  background: #151515;
   border: 1px solid #292929;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 12px;
+  border-radius: 11px;
+  padding: 15px;
+  margin: 12px 0;
+  transition: .2s;
 }
 
-.step-title {
+.task.locked {
+  opacity: .42;
+}
+
+.task.completed {
+  border-color: #8f7137;
+}
+
+.task-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 9px;
+}
+
+.number {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #8d713c;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d8ad54;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.task-title {
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 7px;
 }
 
-.step p {
-  color: #999;
+.task-description {
   font-size: 12px;
+  color: #929292;
   line-height: 1.6;
+  margin-bottom: 11px;
 }
 
-button, a.button {
-  display: block;
+button {
   width: 100%;
-  border: 1px solid #b48b38;
-  background: #d0a343;
-  color: #080808;
-  font-weight: bold;
-  text-align: center;
-  padding: 13px;
-  margin-top: 11px;
+  border: 1px solid #a7833c;
   border-radius: 8px;
-  text-decoration: none;
-  font-size: 13px;
+  background: #d1a447;
+  color: #090909;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: bold;
   cursor: pointer;
 }
 
 button:disabled {
-  opacity: 0.45;
+  opacity: .4;
   cursor: not-allowed;
 }
 
-.secondary {
-  background: #171717 !important;
-  color: #d8ad54 !important;
-  border-color: #393020 !important;
+button.secondary {
+  background: #191919;
+  color: #d8ad54;
+  border-color: #403522;
 }
 
-.key-box {
+.timer {
+  text-align: center;
+  color: #d8ad54;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.message {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 14px;
+  overflow-wrap: anywhere;
+}
+
+#continueArea {
   display: none;
   margin-top: 18px;
-  padding: 15px;
-  background: #090909;
-  border: 1px solid #d0a343;
+}
+
+#keyArea {
+  display: none;
+  border: 1px solid #d8ad54;
   border-radius: 10px;
+  background: #090909;
+  padding: 15px;
+  margin-top: 15px;
 }
 
 .key-label {
@@ -125,136 +186,289 @@ button:disabled {
 }
 
 #keyText {
-  color: #fff;
   font-size: 13px;
   line-height: 1.7;
   overflow-wrap: anywhere;
   user-select: text;
 }
 
-.message {
-  text-align: center;
-  color: #aaa;
-  font-size: 12px;
-  line-height: 1.6;
-  margin-top: 15px;
-  overflow-wrap: anywhere;
-}
-
 .footer {
+  color: #666;
   text-align: center;
-  color: #626262;
   font-size: 10px;
+  line-height: 1.8;
   margin-top: 22px;
 }
 
 .gold {
   color: #d8ad54;
 }
+
+.hidden {
+  display: none !important;
+}
 </style>
 </head>
 
 <body>
 <main class="panel">
+
   <div class="logo">GLODON HUB</div>
   <div class="subtitle">KEY SYSTEM · CREATED BY ueu9195</div>
 
   <div class="line"></div>
 
-  <div class="status" id="status">
+  <div class="status" id="serverStatus">
     Comprobando conexión con el servidor...
   </div>
 
-  <section class="step">
-    <div class="step-title">01 — Verificación</div>
-    <p>Comprueba que el sistema de claves esté conectado correctamente.</p>
-    <button id="checkButton" class="secondary" onclick="checkServer()">
-      Comprobar conexión
-    </button>
-  </section>
-
-  <section class="step">
-    <div class="step-title">02 — Obtener tu clave</div>
-    <p>Genera una clave personal con una duración de 12 horas.</p>
-    <button id="generateButton" onclick="generateKey()" disabled>
-      GENERAR CLAVE
-    </button>
-  </section>
-
-  <div class="key-box" id="keyBox">
-    <div class="key-label">TU CLAVE DE GLODON HUB</div>
-    <div id="keyText"></div>
-    <button class="secondary" onclick="copyKey()">COPIAR CLAVE</button>
-    <p class="message" id="expiryText"></p>
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
   </div>
 
-  <p class="message" id="message">
-    Conecta con el servidor para comenzar.
-  </p>
+  <!-- TASK 1 -->
+  <section class="task" id="task1">
+    <div class="task-heading">
+      <div class="number">01</div>
+      <div class="task-title">YouTube Verification</div>
+    </div>
 
-  <div class="line"></div>
+    <p class="task-description">
+      Abre nuestro video de YouTube. Cuando hayan transcurrido
+      50 segundos, podrás desbloquear el siguiente task.
+    </p>
 
-  <button class="secondary" onclick="showHelp()">AYUDA</button>
+    <button id="videoButton" onclick="startVideoTask()">
+      ABRIR VIDEO
+    </button>
+
+    <div class="timer" id="videoTimer"></div>
+  </section>
+
+  <!-- TASK 2 -->
+  <section class="task locked" id="task2">
+    <div class="task-heading">
+      <div class="number">02</div>
+      <div class="task-title">Join Our Discord</div>
+    </div>
+
+    <p class="task-description">
+      Abre la invitación de nuestro servidor de Discord.
+      Después, regresa aquí y confirma para continuar.
+    </p>
+
+    <button id="discordButton" disabled onclick="openDiscord()">
+      UNLOCKED AFTER TASK 1
+    </button>
+
+    <button id="discordConfirm" class="secondary hidden"
+      onclick="completeTask(2)">
+      YA ABRÍ DISCORD
+    </button>
+  </section>
+
+  <!-- TASK 3 -->
+  <section class="task locked" id="task3">
+    <div class="task-heading">
+      <div class="number">03</div>
+      <div class="task-title">Final Verification</div>
+    </div>
+
+    <p class="task-description">
+      Lee las instrucciones finales para continuar con la
+      generación de tu clave de Glodon Hub.
+    </p>
+
+    <button id="helpButton" disabled onclick="openHelp()">
+      UNLOCKED AFTER TASK 2
+    </button>
+
+    <div id="helpArea" class="hidden">
+      <p class="task-description" style="margin-top:12px">
+        Tu clave es personal y tiene una duración prevista de
+        12 horas. No compartas tu clave con otras personas.
+      </p>
+      <button onclick="completeTask(3)">
+        CONFIRMAR Y COMPLETAR
+      </button>
+    </div>
+  </section>
+
+  <!-- CONTINUE -->
+  <div id="continueArea">
+    <button id="continueButton" onclick="generateKey()">
+      CONTINUAR
+    </button>
+  </div>
+
+  <!-- GENERATED KEY -->
+  <div id="keyArea">
+    <div class="key-label">YOUR GLODON HUB KEY</div>
+    <div id="keyText"></div>
+    <button style="margin-top:12px" onclick="copyKey()">
+      COPIAR CLAVE
+    </button>
+    <div class="message" id="expiryText"></div>
+  </div>
+
+  <div class="message" id="message">
+    Completa los 3 tasks en orden para continuar.
+  </div>
 
   <div class="footer">
     GLODON HUB SYSTEM<br>
     Created by <span class="gold">ueu9195</span>
   </div>
+
 </main>
 
 <script>
-/* CONEXIÓN CON TU API DE RENDER */
+/* API DE RENDER */
 const API_BASE = "https://glodon-key-system.onrender.com";
 
+/* TUS ENLACES */
+const YOUTUBE_URL =
+  "https://youtube.com/shorts/9S5jkNaBL1I?si=6HN8ckN-EKfj14Dr";
+
+const DISCORD_URL =
+  "https://discord.gg/jEQGF6zWS";
+
+let completed = [false, false, false];
+let videoStarted = false;
+let videoStartTime = 0;
+let videoTimerInterval = null;
 let currentKey = "";
+let serverReady = false;
 
-async function checkServer() {
-  const status = document.getElementById("status");
-  const button = document.getElementById("checkButton");
-  const generateButton = document.getElementById("generateButton");
-  const message = document.getElementById("message");
+const $ = id => document.getElementById(id);
 
-  button.disabled = true;
-  status.textContent = "Conectando...";
-  generateButton.disabled = true;
+function updateProgress() {
+  const count = completed.filter(Boolean).length;
+  $("progressFill").style.width = (count / 3 * 100) + "%";
 
-  try {
-    const response = await fetch(API_BASE + "/api/health");
-    const data = await response.json();
+  $("task1").classList.toggle("completed", completed[0]);
+  $("task2").classList.toggle("completed", completed[1]);
+  $("task3").classList.toggle("completed", completed[2]);
 
-    if (response.ok && data.status === "online"
-        && data.database === "connected") {
-      status.innerHTML = '<span class="gold">● SERVIDOR CONECTADO</span>';
-      message.textContent = "Conexión con Render y Neon confirmada.";
-      generateButton.disabled = false;
-    } else {
-      throw new Error("La base de datos no está lista.");
-    }
-  } catch (error) {
-    status.textContent = "Servidor no disponible";
-    message.textContent =
-      "No se pudo conectar. Espera un momento y vuelve a intentarlo.";
-  } finally {
-    button.disabled = false;
+  $("task2").classList.toggle("locked", !completed[0]);
+  $("task3").classList.toggle("locked", !completed[1]);
+
+  $("discordButton").disabled = !completed[0] || completed[1];
+  $("helpButton").disabled = !completed[1] || completed[2];
+
+  if (completed[0] && !completed[1]) {
+    $("discordButton").textContent = "ABRIR DISCORD";
+  }
+
+  if (completed[1] && !completed[2]) {
+    $("helpButton").textContent = "ABRIR INSTRUCCIONES";
+  }
+
+  $("continueArea").style.display =
+    completed.every(Boolean) ? "block" : "none";
+}
+
+function completeTask(number) {
+  if (number === 2 && !completed[0]) return;
+  if (number === 3 && !completed[1]) return;
+
+  completed[number - 1] = true;
+  updateProgress();
+
+  if (number === 1) {
+    $("message").textContent =
+      "Task 1 completado. El Task 2 está desbloqueado.";
+  } else if (number === 2) {
+    $("message").textContent =
+      "Task 2 completado. El Task 3 está desbloqueado.";
+  } else {
+    $("message").textContent =
+      "¡Los 3 tasks están completos! Pulsa CONTINUAR.";
   }
 }
 
-async function generateKey() {
-  const button = document.getElementById("generateButton");
-  const message = document.getElementById("message");
-  const keyBox = document.getElementById("keyBox");
+function startVideoTask() {
+  if (videoStarted || completed[0]) return;
 
-  button.disabled = true;
-  button.textContent = "GENERANDO...";
-  message.textContent = "Solicitando una clave al servidor...";
-  keyBox.style.display = "none";
+  const opened = window.open(YOUTUBE_URL, "_blank");
+
+  if (!opened) {
+    $("message").textContent =
+      "El navegador bloqueó la pestaña. Permite abrir ventanas e inténtalo otra vez.";
+    return;
+  }
+
+  videoStarted = true;
+  videoStartTime = Date.now();
+
+  $("videoButton").disabled = true;
+  $("videoButton").textContent = "VIDEO ABIERTO";
+
+  $("message").textContent =
+    "Deja transcurrir 50 segundos y regresa a esta página.";
+
+  videoTimerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - videoStartTime) / 1000);
+    const remaining = Math.max(0, 50 - elapsed);
+
+    $("videoTimer").textContent =
+      remaining > 0
+        ? "Tiempo restante: " + remaining + " s"
+        : "Tiempo completado";
+
+    if (remaining <= 0) {
+      clearInterval(videoTimerInterval);
+      $("videoTimer").textContent = "✓ TASK 1 COMPLETADO";
+      $("videoButton").textContent = "COMPLETADO";
+      completeTask(1);
+    }
+  }, 250);
+}
+
+function openDiscord() {
+  if (!completed[0] || completed[1]) return;
+
+  const opened = window.open(DISCORD_URL, "_blank");
+
+  if (!opened) {
+    $("message").textContent =
+      "No se pudo abrir Discord. Permite ventanas emergentes e inténtalo de nuevo.";
+    return;
+  }
+
+  $("discordButton").classList.add("hidden");
+  $("discordConfirm").classList.remove("hidden");
+
+  $("message").textContent =
+    "Regresa después de abrir la invitación y confirma el task.";
+}
+
+function openHelp() {
+  if (!completed[1] || completed[2]) return;
+  $("helpArea").classList.remove("hidden");
+  $("helpButton").classList.add("hidden");
+}
+
+async function generateKey() {
+  if (!completed.every(Boolean)) {
+    $("message").textContent = "Completa los 3 tasks primero.";
+    return;
+  }
+
+  if (!serverReady) {
+    $("message").textContent =
+      "El servidor no está listo. Espera y recarga la página.";
+    return;
+  }
+
+  $("continueButton").disabled = true;
+  $("continueButton").textContent = "GENERANDO CLAVE...";
+  $("message").textContent = "Conectando con el servidor seguro...";
 
   try {
     const response = await fetch(API_BASE + "/api/keys/create", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({})
     });
 
@@ -265,24 +479,23 @@ async function generateKey() {
     }
 
     currentKey = data.key;
-    document.getElementById("keyText").textContent = currentKey;
-    keyBox.style.display = "block";
+    $("keyText").textContent = currentKey;
+    $("keyArea").style.display = "block";
+    $("continueArea").style.display = "none";
 
-    if (data.expiresAt) {
-      document.getElementById("expiryText").textContent =
-        "Expira: " + new Date(data.expiresAt).toLocaleString();
-    } else {
-      document.getElementById("expiryText").textContent =
-        "Duración prevista: 12 horas";
-    }
+    $("expiryText").textContent = data.expiresAt
+      ? "Expira: " + new Date(data.expiresAt).toLocaleString()
+      : "Duración prevista: 12 horas";
 
-    message.textContent = "Clave generada correctamente.";
+    $("message").textContent =
+      "Clave generada correctamente. Guárdala en un lugar seguro.";
+
+    $("keyArea").scrollIntoView({ behavior: "smooth", block: "center" });
   } catch (error) {
-    message.textContent =
-      error.message || "Error al conectar con el servidor.";
-  } finally {
-    button.disabled = false;
-    button.textContent = "GENERAR CLAVE";
+    $("message").textContent =
+      "Error: " + (error.message || "No se pudo conectar con el servidor.");
+    $("continueButton").disabled = false;
+    $("continueButton").textContent = "REINTENTAR";
   }
 }
 
@@ -291,21 +504,40 @@ async function copyKey() {
 
   try {
     await navigator.clipboard.writeText(currentKey);
-    document.getElementById("message").textContent =
-      "Clave copiada correctamente.";
+    $("message").textContent = "Clave copiada correctamente.";
   } catch (error) {
-    document.getElementById("message").textContent =
-      "No se pudo copiar automáticamente. Selecciona y copia la clave.";
+    $("message").textContent =
+      "Selecciona la clave y cópiala manualmente.";
   }
 }
 
-function showHelp() {
-  document.getElementById("message").textContent =
-    "Pulsa COMPROBAR CONEXIÓN. Cuando el servidor esté conectado, " +
-    "pulsa GENERAR CLAVE. Si aparece un error, revisa los registros de Render.";
+async function checkServer() {
+  try {
+    const response = await fetch(API_BASE + "/api/health");
+    const data = await response.json();
+
+    serverReady = response.ok &&
+      data.status === "online" &&
+      data.database === "connected";
+
+    $("serverStatus").innerHTML = serverReady
+      ? '<span class="gold">● SERVER CONNECTED</span>'
+      : "Servidor o base de datos no disponibles";
+
+    if (!serverReady) {
+      $("message").textContent =
+        "El servidor responde, pero la base de datos no está lista.";
+    }
+  } catch (error) {
+    serverReady = false;
+    $("serverStatus").textContent = "● SERVER OFFLINE";
+    $("message").textContent =
+      "No se pudo comprobar la conexión con Render. Recarga en unos momentos.";
+  }
 }
 
+updateProgress();
 checkServer();
 </script>
 </body>
-</html>
+  </html>
