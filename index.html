@@ -20,6 +20,11 @@
 
 * { box-sizing: border-box; }
 
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -28,7 +33,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-button, a { -webkit-tap-highlight-color: transparent; }
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 button { font: inherit; }
 
 .page {
@@ -76,7 +84,10 @@ button { font: inherit; }
   box-shadow: 0 15px 45px #0008;
 }
 
-.panel h2 { margin: 0 0 8px; font-size: 19px; }
+.panel h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
 
 .description {
   color: var(--muted);
@@ -108,7 +119,10 @@ button { font: inherit; }
   font-weight: bold;
 }
 
-.task-content { min-width: 0; flex: 1; }
+.task-content {
+  min-width: 0;
+  flex: 1;
+}
 
 .task-content strong {
   font-size: 13px;
@@ -190,7 +204,7 @@ button { font: inherit; }
   color: var(--muted);
   text-align: center;
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 15px 0 0;
   overflow-wrap: anywhere;
 }
@@ -203,24 +217,43 @@ button { font: inherit; }
   letter-spacing: 1px;
 }
 
-.info-page { text-align: center; }
-
-.info-page h1 {
-  font-size: 25px;
-  margin: 0 0 18px;
+.info-page {
+  text-align: center;
 }
 
-.info-page p {
+.info-page h2 {
+  font-size: 23px;
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+
+.info-page .welcome-text {
+  display: block;
+  color: #c5c5c5;
   font-size: 14px;
-  color: #b5b5b5;
-  line-height: 1.8;
+  line-height: 1.9;
+  margin: 0 0 20px;
 }
 
-.info-page a {
-  color: var(--blue);
+.youtube-link {
+  display: block;
+  width: 100%;
+  padding: 15px 12px;
+  margin: 15px 0;
+  border: 1px solid #263b54;
+  border-radius: 10px;
+  background: #090e15;
+  color: var(--blue) !important;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.6;
+  text-align: center;
   text-decoration: underline;
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
+
+.youtube-link:visited { color: var(--blue); }
 
 .timer {
   margin-top: 22px;
@@ -233,21 +266,6 @@ button { font: inherit; }
 }
 
 .timer strong { color: var(--gold); }
-
-input {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  background: #070707;
-  color: white;
-  border: 1px solid #303030;
-  border-radius: 10px;
-  outline: none;
-  font-size: 13px;
-}
-
-input:focus { border-color: var(--gold); }
 
 .key-display {
   display: none;
@@ -265,6 +283,7 @@ input:focus { border-color: var(--gold); }
   font-size: 15px;
   line-height: 1.6;
   user-select: text;
+  overflow-wrap: anywhere;
 }
 
 .expiration {
@@ -276,15 +295,17 @@ input:focus { border-color: var(--gold); }
 }
 
 .expiration strong { color: var(--gold); }
+
 .hidden { display: none !important; }
 </style>
 </head>
 
 <body>
 
-<!-- TAREAS -->
+<!-- PANTALLA PRINCIPAL -->
 <section id="mainPage" class="page active">
   <div class="container">
+
     <header class="brand">
       <h1>GLODON <span>HUB</span></h1>
       <p>KEY SYSTEM · ACCESS VERIFICATION</p>
@@ -305,7 +326,9 @@ input:focus { border-color: var(--gold); }
         <span id="videoBadge" class="status">PENDIENTE</span>
       </div>
 
-      <button id="videoButton" class="btn" type="button">ABRIR VIDEO</button>
+      <button id="videoButton" class="btn" type="button">
+        ABRIR VIDEO
+      </button>
 
       <div id="task2" class="task locked">
         <div class="task-number">02</div>
@@ -358,39 +381,50 @@ input:focus { border-color: var(--gold); }
   </div>
 </section>
 
-<!-- TASK 3: INFORMACIÓN -->
+<!-- TASK 3: PÁGINA INFORMATIVA -->
 <section id="infoPage" class="page">
   <div class="container">
+
     <header class="brand">
       <h1>GLODON <span>HUB</span></h1>
       <p>INFORMACIÓN</p>
     </header>
 
     <main class="panel info-page">
-      <h1>¡Hola! Bienvenido a Glodon Hub</h1>
-      <p>
-        ¿Estás perdid@? Ve a mi YouTube y lee las instrucciones para conocer
-        cómo utilizar Glodon Hub.
+
+      <h2>¡Hola! Bienvenido a Glodon Hub</h2>
+
+      <p class="welcome-text">
+        ¿Estás perdid@? Ve a mi YouTube y lee las instrucciones.
       </p>
 
-      <!-- ENLACE CORRECTO DEL TASK 3 -->
+      <!-- ENLACE AZUL VISIBLE Y FUNCIONAL -->
       <a
+        id="youtubeInstructionsLink"
+        class="youtube-link"
         href="https://youtube.com/shorts/9S5jkNaBL1I?si=6HN8ckN-EKfj14Dr"
         target="_blank"
         rel="noopener noreferrer"
-      >Ver el video de instrucciones</a>
+      >VER MI VIDEO DE YOUTUBE</a>
+
+      <p class="welcome-text">
+        Mira las instrucciones para conocer cómo utilizar Glodon Hub.
+      </p>
 
       <div class="timer">
-        <span>Tiempo restante: </span>
+        Tiempo restante:
         <strong id="infoCountdown">20 segundos</strong>
       </div>
 
-      <button id="returnButton" class="btn primary" type="button" disabled>
-        ESPERA 20 SEGUNDOS...
-      </button>
+      <button
+        id="returnButton"
+        class="btn primary"
+        type="button"
+        disabled
+      >ESPERA 20 SEGUNDOS...</button>
 
       <p id="infoMessage" class="message" aria-live="polite">
-        Espera hasta que termine el contador.
+        Espera hasta que termine el contador para continuar.
       </p>
     </main>
 
@@ -401,6 +435,7 @@ input:focus { border-color: var(--gold); }
 <!-- GENERADOR DE CLAVES -->
 <section id="keyPage" class="page">
   <div class="container">
+
     <header class="brand">
       <h1>GLODON <span>HUB</span></h1>
       <p>KEY GENERATOR</p>
@@ -418,7 +453,10 @@ input:focus { border-color: var(--gold); }
 
       <div id="keyBox" class="key-display">
         <div id="keyText"></div>
-        <button id="copyButton" class="btn" type="button">COPIAR KEY</button>
+
+        <button id="copyButton" class="btn" type="button">
+          COPIAR KEY
+        </button>
 
         <div class="expiration">
           <div>Tiempo restante de la clave</div>
@@ -451,43 +489,100 @@ const VIDEO_URL =
 
 const DISCORD_URL = "https://discord.gg/jEQGF6zWS";
 
-/* ESTADO */
+/* ESTADO DE LAS TAREAS */
 let videoStarted = false;
 let videoStartTime = 0;
+
 let discordOpened = false;
 let discordWaiting = false;
+
 let infoFinished = false;
+let infoStarted = false;
+let infoStartTime = 0;
+
 let currentKey = "";
 let expiresAt = null;
+
 let infoInterval = null;
 let expiryInterval = null;
 let videoTimer = null;
 let discordTimer = null;
 
-/* UTILIDADES */
 const $ = id => document.getElementById(id);
 
-function setPage(pageId) {
+/* NAVEGACIÓN ENTRE PANTALLAS Y BOTÓN ATRÁS */
+const validPages = ["mainPage", "infoPage", "keyPage"];
+
+function displayPage(pageId) {
+  if (!validPages.includes(pageId)) {
+    pageId = "mainPage";
+  }
+
   document.querySelectorAll(".page").forEach(page => {
-    page.classList.remove("active");
+    page.classList.toggle("active", page.id === pageId);
   });
 
-  $(pageId).classList.add("active");
   window.scrollTo(0, 0);
 }
+
+function navigateTo(pageId) {
+  if (!validPages.includes(pageId)) return;
+
+  if (window.history.state?.glodonPage !== pageId) {
+    window.history.pushState(
+      { glodonPage: pageId },
+      "",
+      window.location.pathname + window.location.search + window.location.hash
+    );
+  }
+
+  displayPage(pageId);
+}
+
+function goToMain() {
+  navigateTo("mainPage");
+  updateTasks();
+}
+
+window.history.replaceState(
+  { glodonPage: "mainPage" },
+  "",
+  window.location.pathname + window.location.search + window.location.hash
+);
+
+window.addEventListener("popstate", event => {
+  const pageId = event.state?.glodonPage;
+
+  if (validPages.includes(pageId)) {
+    displayPage(pageId);
+    updateTasks();
+  } else {
+    /* Mantiene la web abierta al pulsar Atrás desde la pantalla principal. */
+    window.history.pushState(
+      { glodonPage: "mainPage" },
+      "",
+      window.location.pathname + window.location.search + window.location.hash
+    );
+
+    displayPage("mainPage");
+    updateTasks();
+  }
+});
 
 function setMessage(text) {
   $("message").textContent = text;
 }
 
+/* ACTUALIZAR ESTADO VISUAL DE LAS TAREAS */
 function updateTasks() {
-  const elapsed = videoStarted
+  const elapsedVideo = videoStarted
     ? Date.now() - videoStartTime
     : 0;
 
-  const videoDone = videoStarted && elapsed >= 20000;
+  const videoDone = videoStarted && elapsedVideo >= 20000;
 
   $("task1").classList.toggle("done", videoDone);
+
   $("videoBadge").textContent = videoDone
     ? "COMPLETADO"
     : videoStarted ? "EN PROGRESO" : "PENDIENTE";
@@ -495,7 +590,7 @@ function updateTasks() {
   $("videoStatus").textContent = videoDone
     ? "Espera completada."
     : videoStarted
-      ? "Video iniciado. Espera 20 segundos."
+      ? "Espera hasta completar los 20 segundos."
       : "Abre el video y espera 20 segundos.";
 
   $("discordButton").disabled =
@@ -518,8 +613,7 @@ function updateTasks() {
         ? "Abre Discord y espera 10 segundos."
         : "Se desbloquea después del video.";
 
-  $("infoButton").disabled =
-    !discordOpened || infoFinished;
+  $("infoButton").disabled = !discordOpened || infoFinished;
 
   $("task3").classList.toggle("locked", !discordOpened);
   $("task3").classList.toggle("done", infoFinished);
@@ -535,20 +629,33 @@ function updateTasks() {
       : "Completa Discord para continuar.";
 
   let progress = 0;
+
   if (videoDone) progress = 33;
   if (discordOpened) progress = 66;
   if (infoFinished) progress = 100;
 
   $("progressFill").style.width = progress + "%";
   $("progressText").textContent = progress + "%";
+
   $("continueArea").classList.toggle("hidden", !infoFinished);
 }
 
-/* TASK 1: VIDEO Y ESPERA DE 20 SEGUNDOS */
+/* TASK 1: VIDEO Y 20 SEGUNDOS */
 $("videoButton").addEventListener("click", () => {
   const elapsed = videoStarted
     ? Date.now() - videoStartTime
     : 0;
+
+  if (videoStarted && elapsed < 20000) {
+    window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
+
+    setMessage(
+      "Espera " + Math.ceil((20000 - elapsed) / 1000) +
+      " segundos para desbloquear Discord."
+    );
+
+    return;
+  }
 
   if (videoStarted && elapsed >= 20000) {
     window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
@@ -556,30 +663,25 @@ $("videoButton").addEventListener("click", () => {
     return;
   }
 
-  if (videoStarted) {
-    window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
-    setMessage(
-      "Espera " + Math.ceil((20000 - elapsed) / 1000) +
-      " segundos para desbloquear Discord."
-    );
-    return;
-  }
-
   const tab = window.open(VIDEO_URL, "_blank");
 
   if (!tab) {
-    setMessage("Permite las ventanas emergentes e inténtalo otra vez.");
+    setMessage(
+      "El navegador bloqueó la ventana. Permite las ventanas emergentes."
+    );
     return;
   }
 
   videoStarted = true;
   videoStartTime = Date.now();
+
   $("videoButton").textContent = "ABRIR VIDEO OTRA VEZ";
 
   setMessage("Video abierto. Espera 20 segundos para continuar.");
   updateTasks();
 
   clearInterval(videoTimer);
+
   videoTimer = setInterval(() => {
     const remaining = Math.max(
       0,
@@ -597,7 +699,7 @@ $("videoButton").addEventListener("click", () => {
   }, 250);
 });
 
-/* TASK 2: DISCORD Y ESPERA OBLIGATORIA DE 10 SEGUNDOS */
+/* TASK 2: DISCORD Y ESPERA DE 10 SEGUNDOS */
 $("discordButton").addEventListener("click", () => {
   const videoDone =
     videoStarted && Date.now() - videoStartTime >= 20000;
@@ -607,7 +709,9 @@ $("discordButton").addEventListener("click", () => {
   const tab = window.open(DISCORD_URL, "_blank");
 
   if (!tab) {
-    setMessage("Permite las ventanas emergentes e inténtalo otra vez.");
+    setMessage(
+      "Permite las ventanas emergentes e inténtalo otra vez."
+    );
     return;
   }
 
@@ -616,7 +720,6 @@ $("discordButton").addEventListener("click", () => {
 
   $("discordButton").disabled = true;
   $("discordButton").textContent = "ESPERA 10 SEGUNDOS...";
-  $("infoButton").disabled = true;
 
   updateTasks();
   setMessage("Discord abierto. Espera los 10 segundos completos.");
@@ -624,14 +727,17 @@ $("discordButton").addEventListener("click", () => {
   let remaining = 10;
 
   clearInterval(discordTimer);
+
   discordTimer = setInterval(() => {
     remaining--;
 
     if (remaining > 0) {
       $("discordButton").textContent =
         "ESPERA " + remaining + " SEGUNDOS...";
+
       $("discordStatus").textContent =
         "Espera " + remaining + " segundos.";
+
       return;
     }
 
@@ -643,27 +749,39 @@ $("discordButton").addEventListener("click", () => {
     $("discordButton").textContent = "DISCORD COMPLETADO";
 
     updateTasks();
-    setMessage("Espera completada. Ahora puedes abrir el Task 3.");
+
+    setMessage(
+      "Espera completada. Ahora puedes abrir el Task 3."
+    );
   }, 1000);
 });
 
-/* TASK 3: PÁGINA DE INFORMACIÓN CON ESPERA DE 20 SEGUNDOS */
+/* TASK 3: MOSTRAR LA PÁGINA INFORMATIVA */
 $("infoButton").addEventListener("click", () => {
   if (!discordOpened || infoFinished) return;
 
-  setPage("info");
+  navigateTo("infoPage");
 
-  let remaining = 20;
-  $("returnButton").disabled = true;
-  $("returnButton").textContent = "ESPERA 20 SEGUNDOS...";
-  $("infoCountdown").textContent = remaining + " segundos";
-  $("infoMessage").textContent =
-    "Mantén esta página abierta hasta que termine el contador.";
+  /* Reinicia el contador al abrir la pantalla de información. */
+  infoStarted = true;
+  infoStartTime = Date.now();
 
   clearInterval(infoInterval);
 
+  $("returnButton").disabled = true;
+  $("returnButton").textContent = "ESPERA 20 SEGUNDOS...";
+  $("infoCountdown").textContent = "20 segundos";
+
+  $("infoMessage").textContent =
+    "Espera hasta que termine el contador para continuar.";
+
+  let remaining = 20;
+
   infoInterval = setInterval(() => {
-    remaining--;
+    remaining = Math.max(
+      0,
+      20 - Math.floor((Date.now() - infoStartTime) / 1000)
+    );
 
     if (remaining > 0) {
       $("infoCountdown").textContent =
@@ -671,39 +789,50 @@ $("infoButton").addEventListener("click", () => {
 
       $("returnButton").textContent =
         "ESPERA " + remaining + " SEGUNDOS...";
+
       return;
     }
 
     clearInterval(infoInterval);
+
     infoFinished = true;
 
     $("infoCountdown").textContent = "Completado";
     $("returnButton").disabled = false;
     $("returnButton").textContent = "VOLVER Y CONTINUAR";
+
     $("infoMessage").textContent =
       "Tiempo completado. Ya puedes regresar.";
-  }, 1000);
+
+    updateTasks();
+  }, 250);
 });
 
+/* VOLVER DESDE TASK 3 */
 $("returnButton").addEventListener("click", () => {
   if (!infoFinished) return;
 
-  setPage("main");
+  navigateTo("mainPage");
   updateTasks();
-  setMessage("Todas las tareas están completadas. Presiona CONTINUAR.");
+
+  setMessage(
+    "Todas las tareas están completadas. Presiona CONTINUAR."
+  );
 });
 
 /* CONTINUAR AL GENERADOR */
 $("continueButton").addEventListener("click", () => {
   if (!infoFinished) return;
-  setPage("keyPage");
+  navigateTo("keyPage");
 });
 
+/* VOLVER A LAS TAREAS DESDE EL GENERADOR */
 $("backButton").addEventListener("click", () => {
-  setPage("main");
+  navigateTo("mainPage");
+  updateTasks();
 });
 
-/* GENERAR KEY CON LA API DE RENDER */
+/* GENERAR CLAVE CON RENDER */
 $("generateButton").addEventListener("click", async () => {
   const button = $("generateButton");
 
@@ -714,12 +843,15 @@ $("generateButton").addEventListener("click", async () => {
 
   currentKey = "";
   expiresAt = null;
+
   clearInterval(expiryInterval);
 
   try {
     const response = await fetch(API_BASE + "/api/keys/create", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({})
     });
 
@@ -775,7 +907,7 @@ $("generateButton").addEventListener("click", async () => {
   }
 });
 
-/* CONTADOR DE EXPIRACIÓN */
+/* CONTADOR DE EXPIRACIÓN DE LA CLAVE */
 function startExpiryCountdown() {
   clearInterval(expiryInterval);
 
@@ -788,14 +920,15 @@ function startExpiryCountdown() {
       $("expiryCountdown").textContent = "CLAVE EXPIRADA";
       $("expiryDate").textContent =
         "Genera otra clave si el servidor lo permite.";
+
       clearInterval(expiryInterval);
       return;
     }
 
-    const secondsTotal = Math.floor(remaining / 1000);
-    const hours = Math.floor(secondsTotal / 3600);
-    const minutes = Math.floor((secondsTotal % 3600) / 60);
-    const seconds = secondsTotal % 60;
+    const totalSeconds = Math.floor(remaining / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
     $("expiryCountdown").textContent =
       String(hours).padStart(2, "0") + ":" +
@@ -810,20 +943,24 @@ function startExpiryCountdown() {
   expiryInterval = setInterval(updateExpiry, 1000);
 }
 
-/* COPIAR KEY REALMENTE */
+/* COPIAR LA CLAVE AL PORTAPAPELES */
 $("copyButton").addEventListener("click", async () => {
   if (!currentKey) return;
 
   const button = $("copyButton");
+
   button.disabled = true;
   $("keyMessage").textContent = "Copiando clave...";
 
   try {
-    if (navigator.clipboard &&
-        typeof navigator.clipboard.writeText === "function") {
+    if (
+      navigator.clipboard &&
+      typeof navigator.clipboard.writeText === "function"
+    ) {
       await navigator.clipboard.writeText(currentKey);
     } else {
       const textarea = document.createElement("textarea");
+
       textarea.value = currentKey;
       textarea.setAttribute("readonly", "");
       textarea.style.position = "fixed";
@@ -843,7 +980,8 @@ $("copyButton").addEventListener("click", async () => {
     }
 
     button.textContent = "¡KEY COPIADA!";
-    $("keyMessage").textContent = "La clave se copió al portapapeles.";
+    $("keyMessage").textContent =
+      "La clave se copió al portapapeles.";
 
     setTimeout(() => {
       button.textContent = "COPIAR KEY";
@@ -858,8 +996,10 @@ $("copyButton").addEventListener("click", async () => {
   }
 });
 
-/* ESTADO INICIAL */
+/* INICIALIZACIÓN */
+displayPage("mainPage");
 updateTasks();
 </script>
+
 </body>
-  </html>
+        </html>
