@@ -2,23 +2,32 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080808">
-<title>Glodon Hub | Key System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>Glodon Hub — Key System</title>
 
 <style>
+:root {
+  color-scheme: dark;
+  --bg: #050505;
+  --panel: #0c0c0c;
+  --border: #292929;
+  --text: #f5f5f5;
+  --muted: #929292;
+  --gold: #d4b16a;
+  --blue: #65aaff;
+}
+
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
+  margin: 0;
   min-height: 100vh;
-  background: #080808;
-  color: #f3f3f3;
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button, a {
@@ -26,432 +35,471 @@ button, a {
 }
 
 button {
+  font: inherit;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 25px 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.page.active {
+  display: flex;
+}
+
+.container {
   width: 100%;
-  padding: 13px;
-  border-radius: 8px;
-  border: 1px solid #a7833c;
-  background: #d1a447;
-  color: #080808;
-  font-weight: bold;
+  max-width: 430px;
+  margin: auto;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 3px;
+  font-weight: 900;
+}
+
+.brand h1 span {
+  color: var(--gold);
+}
+
+.brand p {
+  color: var(--muted);
   font-size: 12px;
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: .4;
-  cursor: not-allowed;
-}
-
-.secondary {
-  background: #171717;
-  color: #d8ad54;
-  border-color: #393020;
-}
-
-#app {
-  width: 100%;
-  max-width: 410px;
-  margin: 0 auto;
+  letter-spacing: 2px;
+  margin-top: 9px;
 }
 
 .panel {
-  background: #101010;
-  border: 1px solid #393020;
-  border-radius: 16px;
-  padding: 22px 18px;
-  box-shadow: 0 15px 45px #000;
+  background: linear-gradient(145deg, #101010, #080808);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 20px;
+  box-shadow: 0 15px 45px #0008;
 }
 
-.logo {
-  text-align: center;
-  color: #d8ad54;
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-
-.subtitle {
-  text-align: center;
-  color: #777;
-  font-size: 10px;
-  letter-spacing: 1px;
-  margin-top: 7px;
-}
-
-.line {
-  height: 1px;
-  background: #393020;
-  margin: 20px 0;
-}
-
-.status {
-  text-align: center;
-  color: #999;
-  font-size: 11px;
-  margin-bottom: 15px;
-}
-
-.progress {
-  height: 3px;
-  background: #292929;
-  border-radius: 5px;
-  margin-bottom: 18px;
-  overflow: hidden;
-}
-
-.progressFill {
-  height: 100%;
-  width: 0;
-  background: #d8ad54;
-  transition: width .3s;
-}
-
-.task {
-  background: #151515;
-  border: 1px solid #292929;
-  border-radius: 10px;
-  padding: 14px;
-  margin: 12px 0;
-}
-
-.task.locked {
-  opacity: .4;
-}
-
-.task.done {
-  border-color: #8c7039;
-}
-
-.heading {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 9px;
-}
-
-.number {
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border: 1px solid #8c7039;
-  border-radius: 7px;
-  color: #d8ad54;
-  font-weight: bold;
-  font-size: 12px;
-}
-
-.taskTitle {
-  font-size: 13px;
-  font-weight: bold;
+.panel h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
 }
 
 .description {
-  color: #929292;
-  font-size: 12px;
-  line-height: 1.7;
-  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 20px;
 }
 
-.timer {
-  color: #d8ad54;
-  text-align: center;
-  font-size: 12px;
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  margin: 10px 0;
+  border: 1px solid #252525;
+  border-radius: 11px;
+  background: #090909;
+}
+
+.task-number {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  border: 1px solid #393939;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.task-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.task-content strong {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.task-content small {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.status {
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.task.done {
+  border-color: #385b42;
+}
+
+.task.done .status {
+  color: #80d99b;
+}
+
+.task.locked {
+  opacity: .45;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  min-height: 46px;
   margin-top: 12px;
+  padding: 13px 14px;
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+  color: white;
+  background: #171717;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn.primary {
+  background: var(--gold);
+  color: #080808;
+  border-color: var(--gold);
+}
+
+.btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.btn.link {
+  background: #0b0b0b;
+  color: var(--blue);
+  border-color: #252525;
+}
+
+.progress-wrap {
+  margin-top: 19px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 5px;
+  border-radius: 20px;
+  background: #252525;
+  overflow: hidden;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0%;
+  background: var(--gold);
+  transition: width .25s ease;
 }
 
 .message {
+  color: var(--muted);
   text-align: center;
-  color: #999;
   font-size: 12px;
-  line-height: 1.6;
-  margin-top: 14px;
+  line-height: 1.5;
+  margin: 15px 0 0;
   overflow-wrap: anywhere;
 }
 
 .footer {
+  color: #575757;
   text-align: center;
-  color: #666;
   font-size: 10px;
-  line-height: 1.8;
   margin-top: 22px;
+  letter-spacing: 1px;
 }
 
-.gold {
-  color: #d8ad54;
+.info-page {
+  text-align: center;
+}
+
+.info-page h1 {
+  font-size: 25px;
+  margin: 0 0 18px;
+}
+
+.info-page p {
+  font-size: 14px;
+  color: #b5b5b5;
+  line-height: 1.8;
+}
+
+.info-page a {
+  color: var(--blue);
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.timer {
+  margin-top: 22px;
+  padding: 13px;
+  background: #090909;
+  border: 1px solid #252525;
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.timer strong {
+  color: var(--gold);
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  background: #070707;
+  color: white;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  outline: none;
+  font-size: 13px;
+}
+
+input:focus {
+  border-color: var(--gold);
+}
+
+.key-display {
+  display: none;
+  margin-top: 17px;
+  padding: 15px;
+  background: #070707;
+  border: 1px solid #343434;
+  border-radius: 11px;
+  overflow-wrap: anywhere;
+}
+
+#keyText {
+  color: var(--gold);
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  user-select: text;
+}
+
+.expiration {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 13px;
+  line-height: 1.7;
+}
+
+.expiration strong {
+  color: var(--gold);
 }
 
 .hidden {
   display: none !important;
 }
-
-/* PANTALLA DE INFORMACIÓN TASK 3 */
-
-#infoPage {
-  min-height: calc(100vh - 40px);
-  background: #080808;
-  color: #f4f4f4;
-  padding: 8px 0 25px;
-}
-
-.infoHeader {
-  color: #d8ad54;
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
-.infoCard {
-  margin-top: 22px;
-  padding: 20px 17px;
-  background: #101010;
-  border: 1px solid #292929;
-  border-radius: 12px;
-}
-
-.infoCard h2 {
-  font-size: 19px;
-  margin-bottom: 15px;
-}
-
-.infoCard p {
-  font-size: 13px;
-  color: #c0c0c0;
-  line-height: 1.9;
-  margin-bottom: 12px;
-}
-
-.videoLink {
-  color: #55aaff;
-  text-decoration: underline;
-  overflow-wrap: anywhere;
-  font-size: 13px;
-}
-
-.infoTimer {
-  text-align: center;
-  color: #d8ad54;
-  font-size: 13px;
-  margin: 20px 0;
-}
-
-.keyBox {
-  margin-top: 16px;
-  padding: 15px;
-  border: 1px solid #d8ad54;
-  border-radius: 10px;
-  background: #090909;
-}
-
-.keyLabel {
-  color: #d8ad54;
-  font-size: 11px;
-  margin-bottom: 12px;
-}
-
-#keyText {
-  font-size: 13px;
-  line-height: 1.8;
-  overflow-wrap: anywhere;
-  user-select: text;
-}
-
-.expiry {
-  color: #d8ad54;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.8;
-  margin-top: 15px;
-}
 </style>
 </head>
 
 <body>
-<div id="app">
 
-  <!-- PANTALLA PRINCIPAL -->
-  <main id="mainPage" class="panel">
+<!-- MAIN TASK PAGE -->
+<section id="mainPage" class="page active">
+  <div class="container">
 
-    <div class="logo">GLODON HUB</div>
-    <div class="subtitle">KEY SYSTEM · CREATED BY ueu9195</div>
+    <header class="brand">
+      <h1>GLODON <span>HUB</span></h1>
+      <p>KEY SYSTEM · ACCESS VERIFICATION</p>
+    </header>
 
-    <div class="line"></div>
-
-    <div class="status" id="serverStatus">
-      Comprobando servidor...
-    </div>
-
-    <div class="progress">
-      <div class="progressFill" id="progressFill"></div>
-    </div>
-
-    <!-- TASK 1 -->
-    <section class="task" id="task1">
-      <div class="heading">
-        <div class="number">01</div>
-        <div class="taskTitle">YouTube</div>
-      </div>
-
+    <main class="panel">
+      <h2>Verificación de acceso</h2>
       <p class="description">
-        Abre el video y espera 20 segundos antes de continuar.
-        Después podrás acceder al siguiente task.
+        Completa las tres tareas para desbloquear el generador de claves.
       </p>
 
-      <button id="videoButton" onclick="startVideo()">
+      <div id="task1" class="task">
+        <div class="task-number">01</div>
+        <div class="task-content">
+          <strong>Ver el video</strong>
+          <small id="videoStatus">Abre el video y espera 20 segundos.</small>
+        </div>
+        <span id="videoBadge" class="status">PENDIENTE</span>
+      </div>
+
+      <button id="videoButton" class="btn" type="button">
         ABRIR VIDEO
       </button>
 
-      <div class="timer" id="videoTimer"></div>
-    </section>
-
-    <!-- TASK 2 -->
-    <section class="task locked" id="task2">
-      <div class="heading">
-        <div class="number">02</div>
-        <div class="taskTitle">Discord Server</div>
+      <div id="task2" class="task locked">
+        <div class="task-number">02</div>
+        <div class="task-content">
+          <strong>Discord</strong>
+          <small id="discordStatus">Se desbloquea después del video.</small>
+        </div>
+        <span id="discordBadge" class="status">BLOQUEADO</span>
       </div>
 
+      <button id="discordButton" class="btn" type="button" disabled>
+        ABRIR DISCORD
+      </button>
+
+      <div id="task3" class="task locked">
+        <div class="task-number">03</div>
+        <div class="task-content">
+          <strong>Información</strong>
+          <small id="infoStatus">Completa Discord para continuar.</small>
+        </div>
+        <span id="infoBadge" class="status">BLOQUEADO</span>
+      </div>
+
+      <button id="infoButton" class="btn" type="button" disabled>
+        ABRIR INFORMACIÓN
+      </button>
+
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span>PROGRESO</span>
+          <span id="progressText">0%</span>
+        </div>
+        <div class="progress-track">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+
+      <p id="message" class="message" aria-live="polite">
+        Comienza con la primera tarea.
+      </p>
+
+      <div id="continueArea" class="hidden">
+        <button id="continueButton" class="btn primary" type="button">
+          CONTINUAR
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">CREATED BY ueu9195</footer>
+  </div>
+</section>
+
+<!-- INFORMATION PAGE -->
+<section id="infoPage" class="page">
+  <div class="container">
+    <header class="brand">
+      <h1>GLODON <span>HUB</span></h1>
+      <p>INFORMACIÓN</p>
+    </header>
+
+    <main class="panel info-page">
+      <h1>¡Hola! Bienvenido a Glodon Hub</h1>
+
+      <p>
+        ¿Estás perdid@? Ve a mi YouTube y lee las instrucciones para conocer
+        cómo utilizar Glodon Hub.
+      </p>
+
+      <a
+        href="https://youtube.com/shorts/9S5jkNaBL1I?si=6HN8ckN-EKfj14Dr"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver el video de instrucciones
+      </a>
+
+      <div class="timer">
+        <span id="infoTimerText">Espera </span>
+        <strong id="infoCountdown">20 segundos</strong>
+      </div>
+
+      <button id="returnButton" class="btn primary" type="button" disabled>
+        ESPERA 20 SEGUNDOS...
+      </button>
+
+      <p id="infoMessage" class="message" aria-live="polite">
+        Mantén esta página abierta hasta que termine el contador.
+      </p>
+    </main>
+
+    <footer class="footer">CREATED BY ueu9195</footer>
+  </div>
+</section>
+
+<!-- KEY GENERATOR PAGE -->
+<section id="keyPage" class="page">
+  <div class="container">
+    <header class="brand">
+      <h1>GLODON <span>HUB</span></h1>
+      <p>KEY GENERATOR</p>
+    </header>
+
+    <main class="panel">
+      <h2>Generador de claves</h2>
       <p class="description">
-        Accede a nuestro servidor de Discord. Después de abrir
-        la invitación, podrás avanzar al último task.
+        Genera tu clave de acceso. La duración depende de la expiración
+        indicada por el servidor.
       </p>
 
-      <button id="discordButton" disabled onclick="openDiscord()">
-        TASK BLOQUEADO
+      <button id="generateButton" class="btn primary" type="button">
+        GENERAR KEY
       </button>
-    </section>
 
-    <!-- TASK 3 -->
-    <section class="task locked" id="task3">
-      <div class="heading">
-        <div class="number">03</div>
-        <div class="taskTitle">Información de Glodon Hub</div>
+      <div id="keyBox" class="key-display">
+        <div id="keyText"></div>
+
+        <button id="copyButton" class="btn" type="button">
+          COPIAR KEY
+        </button>
+
+        <div class="expiration">
+          <div>Tiempo restante de la clave</div>
+          <strong id="expiryCountdown">Calculando...</strong>
+          <div id="expiryDate"></div>
+        </div>
       </div>
 
-      <p class="description">
-        Lee la información importante antes de continuar.
+      <p id="keyMessage" class="message" aria-live="polite">
+        Presiona GENERAR KEY para comenzar.
       </p>
 
-      <button id="infoButton" disabled onclick="openInfo()">
-        TASK BLOQUEADO
+      <button id="backButton" class="btn" type="button">
+        VOLVER A LAS TAREAS
       </button>
-    </section>
+    </main>
 
-    <div id="continueArea" class="hidden">
-      <button onclick="showKeyPage()">
-        CONTINUAR
-      </button>
-    </div>
-
-    <div class="message" id="message">
-      Completa los pasos en orden para continuar.
-    </div>
-
-    <div class="footer">
-      GLODON HUB SYSTEM<br>
-      Created by <span class="gold">ueu9195</span>
-    </div>
-  </main>
-
-  <!-- TASK 3: PÁGINA INFORMATIVA NEGRA -->
-  <main id="infoPage" class="hidden">
-    <div class="infoHeader">GLODON HUB</div>
-
-    <div class="line"></div>
-
-    <div class="infoCard">
-      <h2>¡Hola!</h2>
-
-      <p>
-        Bienvenido a Glodon Hub.
-      </p>
-
-      <p>
-        ¿Estás perdid@? Ve a mi YouTube y lee las instrucciones
-        para aprender cómo utilizar Glodon Hub.
-      </p>
-
-      <p>
-        YouTube:
-        <a class="videoLink"
-           href="https://youtube.com/shorts/2B3r12H67_Y?si=i0cSfdBKIt0Vmzg7"
-           target="_blank"
-           rel="noopener noreferrer">
-          https://youtube.com/shorts/2B3r12H67_Y?si=i0cSfdBKIt0Vmzg7
-        </a>
-      </p>
-
-      <p>
-        Cuando termines de leer, espera a que finalice el
-        temporizador para volver a Glodon Hub.
-      </p>
-    </div>
-
-    <div class="infoTimer" id="infoTimer">
-      Tiempo restante: 20 segundos
-    </div>
-
-    <button id="returnButton" disabled onclick="finishInfo()">
-      ESPERA...
-    </button>
-
-    <div class="footer">
-      Created by <span class="gold">ueu9195</span>
-    </div>
-  </main>
-
-  <!-- PANTALLA FINAL: CLAVE -->
-  <main id="keyPage" class="panel hidden">
-    <div class="logo">GLODON HUB</div>
-    <div class="subtitle">KEY GENERATOR</div>
-
-    <div class="line"></div>
-
-    <div class="status">
-      Verificación finalizada
-    </div>
-
-    <p class="description">
-      Tu clave se genera desde el servidor. Guárdala antes
-      de salir de esta página.
-    </p>
-
-    <button id="generateButton" onclick="generateKey()">
-      GENERAR KEY
-    </button>
-
-    <div id="keyBox" class="keyBox hidden">
-      <div class="keyLabel">YOUR GLODON HUB KEY</div>
-
-      <div id="keyText"></div>
-
-      <button class="secondary" style="margin-top:14px"
-        onclick="copyKey()">
-        COPIAR KEY
-      </button>
-
-      <!-- CONTADOR DINÁMICO DE EXPIRACIÓN -->
-      <div class="expiry" id="expiryTimer">
-        Calculando expiración...
-      </div>
-    </div>
-
-    <div class="message" id="keyMessage"></div>
-
-    <div class="footer">
-      Created by <span class="gold">ueu9195</span>
-    </div>
-  </main>
-
-</div>
+    <footer class="footer">CREATED BY ueu9195</footer>
+  </div>
+</section>
 
 <script>
-/* CONEXIÓN API */
+"use strict";
+
+/* CONFIGURACIÓN */
 const API_BASE = "https://glodon-key-system.onrender.com";
 
-/* ENLACES */
-const YOUTUBE_URL =
+const VIDEO_URL =
   "https://youtube.com/shorts/2B3r12H67_Y?si=i0cSfdBKIt0Vmzg7";
 
 const DISCORD_URL =
@@ -460,262 +508,346 @@ const DISCORD_URL =
 /* ESTADO */
 let videoStarted = false;
 let videoStartTime = 0;
-let infoStartTime = 0;
-let videoInterval = null;
+let discordOpened = false;
+let infoFinished = false;
+let currentKey = "";
+let expiresAt = null;
 let infoInterval = null;
 let expiryInterval = null;
-let infoFinished = false;
-let serverReady = false;
-let currentKey = "";
-let expiresAt = 0;
+let videoTimer = null;
 
+/* HELPERS */
 const $ = id => document.getElementById(id);
 
-function setPage(page) {
-  $("mainPage").classList.toggle("hidden", page !== "main");
-  $("infoPage").classList.toggle("hidden", page !== "info");
-  $("keyPage").classList.toggle("hidden", page !== "key");
+function setPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
 
-  const hashes = {
-    main: "#tasks",
-    info: "#task3",
-    key: "#key"
-  };
-
-  if (location.hash !== hashes[page]) {
-    history.pushState({ page }, "", hashes[page]);
-  }
-
+  $(pageId).classList.add("active");
   window.scrollTo(0, 0);
 }
 
-window.addEventListener("popstate", () => {
-  // No permite saltarse las tareas usando el botón Atrás.
-  if (infoFinished) {
-    setPage("key");
-  } else if (infoStartTime) {
-    setPage("info");
-  } else {
-    setPage("main");
-  }
-});
+function setMessage(text) {
+  $("message").textContent = text;
+}
 
 function updateTasks() {
-  const task2Unlocked = videoStarted &&
-    Date.now() - videoStartTime >= 20000;
+  const elapsed = videoStarted
+    ? Date.now() - videoStartTime
+    : 0;
 
-  $("task1").classList.toggle("done", task2Unlocked);
-  $("task2").classList.toggle("locked", !task2Unlocked);
-  $("task3").classList.toggle("locked", !task2Unlocked);
+  const videoDone = videoStarted && elapsed >= 20000;
 
-  $("discordButton").disabled = !task2Unlocked;
-  $("discordButton").textContent = task2Unlocked
-    ? "ABRIR DISCORD"
-    : "TASK BLOQUEADO";
+  $("task1").classList.toggle("done", videoDone);
+  $("videoBadge").textContent = videoDone ? "COMPLETADO" :
+    videoStarted ? "EN PROGRESO" : "PENDIENTE";
 
-  $("infoButton").disabled = !task2Unlocked;
-  $("infoButton").textContent = task2Unlocked
-    ? "ABRIR INFORMACIÓN"
-    : "TASK BLOQUEADO";
+  $("videoStatus").textContent = videoDone
+    ? "Video verificado por tiempo."
+    : videoStarted
+      ? "Espera hasta completar los 20 segundos."
+      : "Abre el video y espera 20 segundos.";
 
-  $("progressFill").style.width =
-    (infoFinished ? 100 : task2Unlocked ? 50 : 0) + "%";
+  $("discordButton").disabled = !videoDone || discordOpened;
+
+  $("task2").classList.toggle("locked", !videoDone);
+  $("task2").classList.toggle("done", discordOpened);
+
+  $("discordBadge").textContent = discordOpened
+    ? "COMPLETADO"
+    : videoDone
+      ? "DISPONIBLE"
+      : "BLOQUEADO";
+
+  $("discordStatus").textContent = discordOpened
+    ? "Terminaste la espera de Discord."
+    : videoDone
+      ? "Abre la invitación y espera 5 segundos."
+      : "Se desbloquea después del video.";
+
+  $("infoButton").disabled = !discordOpened || infoFinished;
+
+  $("task3").classList.toggle("locked", !discordOpened);
+  $("task3").classList.toggle("done", infoFinished);
+
+  $("infoBadge").textContent = infoFinished
+    ? "COMPLETADO"
+    : discordOpened
+      ? "DISPONIBLE"
+      : "BLOQUEADO";
+
+  $("infoStatus").textContent = infoFinished
+    ? "Información completada."
+    : discordOpened
+      ? "Abre la información y espera 20 segundos."
+      : "Completa Discord para continuar.";
+
+  let progress = 0;
+  if (videoDone) progress = 33;
+  if (discordOpened) progress = 66;
+  if (infoFinished) progress = 100;
+
+  $("progressFill").style.width = progress + "%";
+  $("progressText").textContent = progress + "%";
 
   $("continueArea").classList.toggle("hidden", !infoFinished);
 }
 
-function startVideo() {
-  if (videoStarted) return;
+function startVideoTimer() {
+  clearInterval(videoTimer);
 
-  // Abrir directamente desde el toque para evitar bloqueadores.
-  const tab = window.open(YOUTUBE_URL, "_blank");
+  videoTimer = setInterval(() => {
+    if (!videoStarted) return;
+
+    const remaining = Math.max(
+      0,
+      20000 - (Date.now() - videoStartTime)
+    );
+
+    if (remaining > 0) {
+      $("videoStatus").textContent =
+        "Espera " + Math.ceil(remaining / 1000) +
+        " segundos para continuar.";
+    } else {
+      clearInterval(videoTimer);
+      updateTasks();
+      setMessage("Primera tarea completada. Ya puedes abrir Discord.");
+    }
+  }, 250);
+}
+
+/* TAREA 1 */
+$("videoButton").addEventListener("click", () => {
+  if (videoStarted) {
+    const remaining = Math.max(
+      0,
+      20000 - (Date.now() - videoStartTime)
+    );
+
+    if (remaining > 0) {
+      setMessage(
+        "Espera " + Math.ceil(remaining / 1000) +
+        " segundos para completar la primera tarea."
+      );
+      window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    updateTasks();
+    window.open(VIDEO_URL, "_blank", "noopener,noreferrer");
+    return;
+  }
+
+  const tab = window.open(VIDEO_URL, "_blank");
 
   if (!tab) {
-    $("message").textContent =
-      "El navegador bloqueó la pestaña. Permite ventanas emergentes e inténtalo otra vez.";
+    setMessage(
+      "El navegador bloqueó la ventana. Permite ventanas emergentes e inténtalo otra vez."
+    );
     return;
   }
 
   videoStarted = true;
   videoStartTime = Date.now();
 
-  $("videoButton").disabled = true;
-  $("videoButton").textContent = "VIDEO ABIERTO";
+  $("videoButton").textContent = "ABRIR VIDEO OTRA VEZ";
+  setMessage("Video abierto. Espera 20 segundos para desbloquear Discord.");
 
-  $("message").textContent =
-    "Regresa después de que transcurran los 20 segundos.";
+  startVideoTimer();
+  updateTasks();
+});
 
-  videoInterval = setInterval(() => {
-    const elapsed = Math.floor(
-      (Date.now() - videoStartTime) / 1000
-    );
-
-    const remaining = Math.max(0, 20 - elapsed);
-
-    $("videoTimer").textContent = remaining > 0
-      ? "Tiempo restante: " + remaining + " s"
-      : "✓ Puedes continuar";
-
-    updateTasks();
-
-    if (remaining <= 0) {
-      clearInterval(videoInterval);
-      $("videoButton").textContent = "CONTINUAR DESBLOQUEADO";
-      $("message").textContent =
-        "Ya puedes abrir el Task 2.";
-    }
-  }, 250);
-}
-
-function openDiscord() {
+/* TAREA 2 */
+$("discordButton").addEventListener("click", () => {
   if (!videoStarted ||
-      Date.now() - videoStartTime < 20000) return;
+      Date.now() - videoStartTime < 20000 ||
+      discordOpened) {
+    return;
+  }
 
   const tab = window.open(DISCORD_URL, "_blank");
 
   if (!tab) {
-    $("message").textContent =
-      "No se pudo abrir Discord. Permite ventanas emergentes e inténtalo de nuevo.";
+    setMessage(
+      "Permite abrir ventanas emergentes e inténtalo otra vez."
+    );
     return;
   }
 
-  // Abrir Discord desbloquea el acceso al Task 3.
-  $("task2").classList.add("done");
-  $("task3").classList.remove("locked");
-  $("infoButton").disabled = false;
-  $("infoButton").textContent = "ABRIR INFORMACIÓN";
+  $("discordButton").disabled = true;
+  $("discordButton").textContent = "ESPERA 5 SEGUNDOS...";
+  $("discordStatus").textContent = "Esperando 5 segundos...";
+  setMessage(
+    "Invitación abierta. Espera 5 segundos para continuar."
+  );
 
-  $("progressFill").style.width = "70%";
-  $("message").textContent =
-    "Ya puedes abrir el Task 3.";
-}
+  setTimeout(() => {
+    discordOpened = true;
 
-function openInfo() {
-  if ($("infoButton").disabled || infoStartTime) return;
+    $("discordButton").textContent = "DISCORD COMPLETADO";
+    $("discordButton").disabled = true;
 
-  infoStartTime = Date.now();
+    updateTasks();
+
+    setMessage(
+      "Task 2 completada. Ya puedes abrir la información."
+    );
+  }, 5000);
+});
+
+/* TAREA 3: PÁGINA INFORMATIVA */
+$("infoButton").addEventListener("click", () => {
+  if (!discordOpened || infoFinished) return;
+
   setPage("info");
 
+  let remaining = 20;
+
+  $("returnButton").disabled = true;
+  $("returnButton").textContent = "ESPERA 20 SEGUNDOS...";
+  $("infoCountdown").textContent = remaining + " segundos";
+  $("infoMessage").textContent =
+    "Mantén esta página abierta hasta que termine el contador.";
+
+  clearInterval(infoInterval);
+
   infoInterval = setInterval(() => {
-    const elapsed = Math.floor(
-      (Date.now() - infoStartTime) / 1000
-    );
+    remaining--;
 
-    const remaining = Math.max(0, 20 - elapsed);
+    if (remaining > 0) {
+      $("infoCountdown").textContent =
+        remaining + (remaining === 1 ? " segundo" : " segundos");
 
-    $("infoTimer").textContent = remaining > 0
-      ? "Tiempo restante: " + remaining + " segundos"
-      : "Información leída";
-
-    if (remaining <= 0) {
-      clearInterval(infoInterval);
-
-      $("returnButton").disabled = false;
-      $("returnButton").textContent = "VOLVER A GLODON HUB";
+      $("returnButton").textContent =
+        "ESPERA " + remaining + " SEGUNDOS...";
+      return;
     }
-  }, 250);
-}
 
-function finishInfo() {
-  if (Date.now() - infoStartTime < 20000) return;
+    clearInterval(infoInterval);
+    infoFinished = true;
 
-  infoFinished = true;
-  updateTasks();
+    $("infoCountdown").textContent = "Completado";
+    $("returnButton").disabled = false;
+    $("returnButton").textContent = "VOLVER Y CONTINUAR";
+    $("infoMessage").textContent =
+      "Tiempo completado. Ya puedes regresar.";
 
-  $("message").textContent =
-    "Ya puedes continuar para obtener tu clave.";
+  }, 1000);
+});
+
+$("returnButton").addEventListener("click", () => {
+  if (!infoFinished) return;
 
   setPage("main");
-}
+  updateTasks();
 
-function showKeyPage() {
+  setMessage(
+    "Todas las tareas están completadas. Presiona CONTINUAR."
+  );
+});
+
+/* CONTINUAR AL GENERADOR */
+$("continueButton").addEventListener("click", () => {
   if (!infoFinished) return;
-  setPage("key");
-}
+  setPage("keyPage");
+});
 
-async function checkServer() {
-  try {
-    const response = await fetch(API_BASE + "/api/health");
-    const data = await response.json();
+/* VOLVER A TAREAS */
+$("backButton").addEventListener("click", () => {
+  setPage("main");
+});
 
-    serverReady = response.ok &&
-      data.status === "online" &&
-      data.database === "connected";
+/* GENERAR KEY DESDE RENDER */
+$("generateButton").addEventListener("click", async () => {
+  const button = $("generateButton");
 
-    $("serverStatus").innerHTML = serverReady
-      ? '<span class="gold">● SERVER CONNECTED</span>'
-      : "Servidor o base de datos no disponibles";
-  } catch (error) {
-    serverReady = false;
-    $("serverStatus").textContent = "● SERVER OFFLINE";
-  }
-}
+  button.disabled = true;
+  button.textContent = "GENERANDO...";
+  $("keyMessage").textContent = "Conectando con el servidor...";
+  $("keyBox").style.display = "none";
 
-async function generateKey() {
-  if (!infoFinished) {
-    $("keyMessage").textContent =
-      "Completa los pasos anteriores primero.";
-    return;
-  }
-
-  if (!serverReady) {
-    await checkServer();
-  }
-
-  if (!serverReady) {
-    $("keyMessage").textContent =
-      "No hay conexión con el servidor. Espera e inténtalo otra vez.";
-    return;
-  }
-
-  $("generateButton").disabled = true;
-  $("generateButton").textContent = "GENERANDO...";
-  $("keyMessage").textContent = "Conectando con Render y Neon...";
+  currentKey = "";
+  expiresAt = null;
+  clearInterval(expiryInterval);
 
   try {
     const response = await fetch(API_BASE + "/api/keys/create", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({})
     });
 
-    const data = await response.json();
+    let data;
 
-    if (!response.ok || !data.key) {
-      throw new Error(data.error || "No se pudo generar la clave.");
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error("El servidor devolvió una respuesta no válida.");
     }
 
-    currentKey = data.key;
+    if (!response.ok) {
+      throw new Error(
+        data.error || data.message || "No se pudo generar la clave."
+      );
+    }
+
+    const payload = data.data || data;
+
+    if (!payload.key) {
+      throw new Error("La respuesta del servidor no contiene una clave.");
+    }
+
+    currentKey = String(payload.key);
     $("keyText").textContent = currentKey;
-    $("keyBox").classList.remove("hidden");
+    $("keyBox").style.display = "block";
 
-    expiresAt = data.expiresAt
-      ? new Date(data.expiresAt).getTime()
-      : Date.now() + 12 * 60 * 60 * 1000;
+    if (payload.expiresAt) {
+      const parsedExpiry = new Date(payload.expiresAt);
 
-    startExpiryCountdown();
+      if (!Number.isNaN(parsedExpiry.getTime())) {
+        expiresAt = parsedExpiry;
+        startExpiryCountdown();
+      } else {
+        $("expiryCountdown").textContent =
+          "Expiración no disponible";
+        $("expiryDate").textContent = "";
+      }
+    } else {
+      $("expiryCountdown").textContent =
+        "Expiración no disponible";
+      $("expiryDate").textContent = "";
+    }
 
-    $("generateButton").classList.add("hidden");
     $("keyMessage").textContent =
       "Clave generada correctamente.";
 
   } catch (error) {
     $("keyMessage").textContent =
-      error.message || "Error al generar la clave.";
+      "Error: " + (error.message || "No se pudo conectar.") +
+      " Comprueba que Render esté activo.";
 
-    $("generateButton").disabled = false;
-    $("generateButton").textContent = "REINTENTAR";
+  } finally {
+    button.disabled = false;
+    button.textContent = "GENERAR OTRA KEY";
   }
-}
+});
 
+/* CONTADOR DINÁMICO DE EXPIRACIÓN */
 function startExpiryCountdown() {
-  if (expiryInterval) clearInterval(expiryInterval);
+  clearInterval(expiryInterval);
 
   function updateExpiry() {
-    const remaining = Math.max(0, expiresAt - Date.now());
+    if (!expiresAt) return;
+
+    const remaining = expiresAt.getTime() - Date.now();
 
     if (remaining <= 0) {
-      $("expiryTimer").textContent = "KEY EXPIRADA";
+      $("expiryCountdown").textContent = "CLAVE EXPIRADA";
+      $("expiryDate").textContent =
+        "Genera otra clave si el servidor lo permite.";
       clearInterval(expiryInterval);
       return;
     }
@@ -725,31 +857,72 @@ function startExpiryCountdown() {
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
-    $("expiryTimer").textContent =
-      "La key expira en: " +
+    $("expiryCountdown").textContent =
       String(hours).padStart(2, "0") + ":" +
       String(minutes).padStart(2, "0") + ":" +
       String(seconds).padStart(2, "0");
+
+    $("expiryDate").textContent =
+      "Expira: " + expiresAt.toLocaleString();
   }
 
   updateExpiry();
   expiryInterval = setInterval(updateExpiry, 1000);
 }
 
-async function copyKey() {
+/* COPIAR KEY AL PORTAPAPELES */
+$("copyButton").addEventListener("click", async () => {
   if (!currentKey) return;
 
+  const button = $("copyButton");
+  button.disabled = true;
+  $("keyMessage").textContent = "Copiando clave...";
+
   try {
-    await navigator.clipboard.writeText(currentKey);
-    $("keyMessage").textContent = "Key copiada correctamente.";
+    if (navigator.clipboard &&
+        typeof navigator.clipboard.writeText === "function") {
+      await navigator.clipboard.writeText(currentKey);
+    } else {
+      /* Alternativa para navegadores sin Clipboard API */
+      const textarea = document.createElement("textarea");
+      textarea.value = currentKey;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+
+      const copied = document.execCommand("copy");
+      textarea.remove();
+
+      if (!copied) {
+        throw new Error("El navegador no permitió copiar la clave.");
+      }
+    }
+
+    button.textContent = "¡KEY COPIADA!";
+    $("keyMessage").textContent =
+      "La clave se copió al portapapeles.";
+
+    setTimeout(() => {
+      button.textContent = "COPIAR KEY";
+    }, 2000);
+
   } catch (error) {
     $("keyMessage").textContent =
-      "Selecciona la key y cópiala manualmente.";
-  }
-}
+      "No se pudo copiar automáticamente. Abre la web en Chrome con HTTPS e inténtalo otra vez.";
 
+  } finally {
+    button.disabled = false;
+  }
+});
+
+/* ESTADO INICIAL */
 updateTasks();
-checkServer();
 </script>
+
 </body>
-      </html>
+        </html>
